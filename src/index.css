@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Monocraft";
+  src: url("./assets/fonts/Monocraft.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-pixel: "Monocraft", ui-monospace, monospace;
+  --font-body: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+
+  --color-stone-950: #17140f;
+  --color-stone-900: #211d17;
+  --color-stone-800: #2f2a22;
+  --color-stone-700: #433c30;
+  --color-stone-600: #5a5142;
+  --color-stone-500: #766b58;
+  --color-stone-400: #9b8f79;
+  --color-stone-300: #c2b7a1;
+  --color-stone-200: #ded4bd;
+  --color-stone-100: #efe9da;
+  --color-stone-50: #f8f5ec;
+
+  --color-emerald: #33ab4c;
+  --color-emerald-dark: #217a34;
+  --color-lapis: #2f5fce;
+  --color-lapis-dark: #1f428f;
+  --color-redstone: #d3401f;
+  --color-redstone-dark: #9c2d14;
+  --color-gold: #e0a721;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+img.pixelated {
+  image-rendering: pixelated;
+}
+
+/*
+ * Fonds en boucle de textures de bloc façon Minecraft. Les fichiers ne sont
+ * pas fournis (à ajouter manuellement dans public/textures/) : tant qu'ils
+ * sont absents, la couleur de fond Tailwind existante (ex. bg-stone-800)
+ * sert de repli et rien ne casse visuellement.
+ * Le dégradé superposé assure la lisibilité du texte quel que soit le motif
+ * fourni ; ajuster son opacité une fois la texture réelle en place.
+ */
+.bg-texture-header {
+  background-image: linear-gradient(rgba(23, 20, 15, 0.72), rgba(23, 20, 15, 0.72)), url("/textures/header.png");
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+}
+
+.bg-texture-body {
+  background-image: linear-gradient(rgba(248, 245, 236, 0.9), rgba(248, 245, 236, 0.9)), url("/textures/body.png");
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+}
+
+.dark .bg-texture-body {
+  background-image: linear-gradient(rgba(23, 20, 15, 0.9), rgba(23, 20, 15, 0.9)), url("/textures/body.png");
+}
+
+@utility bevel {
+  border-style: solid;
+  border-width: 2px;
+  border-top-color: color-mix(in srgb, white 45%, transparent);
+  border-left-color: color-mix(in srgb, white 45%, transparent);
+  border-bottom-color: color-mix(in srgb, black 55%, transparent);
+  border-right-color: color-mix(in srgb, black 55%, transparent);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+@utility bevel-inset {
+  border-style: solid;
+  border-width: 2px;
+  border-top-color: color-mix(in srgb, black 55%, transparent);
+  border-left-color: color-mix(in srgb, black 55%, transparent);
+  border-bottom-color: color-mix(in srgb, white 45%, transparent);
+  border-right-color: color-mix(in srgb, white 45%, transparent);
+}
