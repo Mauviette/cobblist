@@ -23,6 +23,7 @@
   "home.open": "Ouvrir",
   "home.newProject": "Nouveau projet",
   "home.newProjectPlaceholder": "Nom du projet",
+  "home.untitledProject": "Projet sans titre",
   "home.emptyTitle": "Aucun projet pour le moment",
   "home.emptyBody": "Créez votre premier projet pour commencer à lister les blocs dont vous avez besoin.",
   "home.emptyCta": "Créer un projet",

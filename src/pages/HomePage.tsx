@@ -20,8 +20,7 @@ export function HomePage() {
   const projectToDelete = projects.find((p) => p.id === pendingDelete);
 
   function handleCreate() {
-    const trimmed = newName.trim();
-    if (!trimmed) return;
+    const trimmed = newName.trim() || t('home.untitledProject');
     const project = createProject(trimmed);
     setNewName('');
     navigate(`/project/${project.id}`, { state: { initialMode: 'edit' } });

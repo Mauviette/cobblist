@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
+import { BLOCKS_BY_ID, blockName } from '../lib/blocksIndex';
 import { computeProgress } from '../lib/stacks';
-import type { Project } from '../types';
+import type { BlockItem, Project } from '../types';
+import { BlockIcon } from './BlockIcon';
 import { ProgressBar } from './ProgressBar';
 
 interface ProjectCardProps {
@@ -20,6 +22,17 @@ export function ProjectCard({ project, onRename, onDuplicate, onDelete }: Projec
   const updatedAt = new Intl.DateTimeFormat(lang, { dateStyle: 'medium', timeStyle: 'short' }).format(
     new Date(project.updatedAt),
   );
+
+  // Aperçu des blocs nécessaires, du plus au moins demandé. Rendu dans une
+  // rangée qui ne passe jamais à la ligne et masque le débordement : la
+  // largeur disponible (alignée sur la barre de progression) détermine
+  // naturellement combien d'icônes tiennent, sans calcul en JS.
+  const previewBlocks = useMemo(() => {
+    return [...project.items]
+      .sort((a, b) => b.quantity - a.quantity)
+      .map((item) => BLOCKS_BY_ID.get(item.blockId))
+      .filter((block): block is BlockItem => !!block);
+  }, [project.items]);
 
   function commitRename() {
     const trimmed = draftName.trim();
@@ -64,6 +77,14 @@ export function ProjectCard({ project, onRename, onDuplicate, onDelete }: Projec
           {progress.percent}%
         </span>
       </div>
+
+      {previewBlocks.length > 0 && (
+        <div className="bevel-inset flex flex-nowrap items-center gap-1 overflow-hidden border-stone-400 bg-stone-100 p-1.5 dark:border-stone-600 dark:bg-stone-900">
+          {previewBlocks.map((block) => (
+            <BlockIcon key={block.id} iconRef={block.iconRef} alt={blockName(block, lang)} size={20} />
+          ))}
+        </div>
+      )}
 
       <div className="mt-1 flex flex-wrap gap-2 text-xs">
         <Link

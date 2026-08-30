@@ -23,6 +23,7 @@
   "home.open": "Open",
   "home.newProject": "New project",
   "home.newProjectPlaceholder": "Project name",
+  "home.untitledProject": "Untitled Project",
   "home.emptyTitle": "No projects yet",
   "home.emptyBody": "Create your first project to start listing the blocks you need.",
   "home.emptyCta": "Create a project",
