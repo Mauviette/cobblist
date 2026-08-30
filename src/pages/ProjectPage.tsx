@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { AddQuantityDialog } from '../components/AddQuantityDialog';
 import { BlockGrid } from '../components/BlockGrid';
 import { BlockListItem } from '../components/BlockListItem';
 import { BlockSearchBar } from '../components/BlockSearchBar';
@@ -29,6 +30,7 @@ export function ProjectPage() {
   const [draftName, setDraftName] = useState('');
   const [printView, setPrintView] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [pendingAddBlockId, setPendingAddBlockId] = useState<string | null>(null);
 
   const project = projects.find((p) => p.id === id);
 
@@ -218,8 +220,8 @@ export function ProjectPage() {
 
       {mode === 'edit' && (
         <div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-2">
-          <BlockSearchBar onAdd={(blockId) => addBlock(blockId)} />
-          <BlockGrid onAdd={(blockId) => addBlock(blockId)} />
+          <BlockSearchBar onAdd={(blockId) => setPendingAddBlockId(blockId)} />
+          <BlockGrid onAdd={(blockId) => setPendingAddBlockId(blockId)} />
         </div>
       )}
 
@@ -268,6 +270,15 @@ export function ProjectPage() {
           })}
         </div>
       )}
+
+      <AddQuantityDialog
+        block={pendingAddBlockId ? (BLOCKS_BY_ID.get(pendingAddBlockId) ?? null) : null}
+        onCancel={() => setPendingAddBlockId(null)}
+        onConfirm={(quantity) => {
+          if (pendingAddBlockId) addBlock(pendingAddBlockId, quantity);
+          setPendingAddBlockId(null);
+        }}
+      />
 
       <ConfirmDialog
         open={pendingRemove !== null}

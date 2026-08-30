@@ -55,6 +55,7 @@
   "project.stacksFormatExact": "{{total}} ({{stacks}} stack)",
   "project.stacksFormatExactPlural": "{{total}} ({{stacks}} stacks)",
   "project.quantityInput": "Exact quantity",
+  "project.addQuantityLabel": "Quantity to add",
   "project.removeItem": "Remove this block from the list",
   "project.removeItemConfirm": "Remove \"{{name}}\" from the list?",
   "project.exportJson": "Export (JSON)",

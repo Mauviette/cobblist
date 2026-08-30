@@ -25,7 +25,11 @@ export function QuantityControls({ quantity, max, showInput = true, hiddenDeltas
           key={delta}
           type="button"
           onClick={() => onChange(clamp(quantity + delta))}
-          className="bevel border-stone-500 bg-stone-200 px-1.5 py-0.5 text-xs font-bold hover:bg-stone-300 active:bevel-inset dark:bg-stone-700 dark:hover:bg-stone-600"
+          className={`bevel border-stone-500 px-1.5 py-0.5 text-xs font-bold active:bevel-inset ${
+            delta > 0
+              ? 'bg-emerald/15 hover:bg-emerald/25 dark:bg-emerald/20 dark:hover:bg-emerald/30'
+              : 'bg-redstone/15 hover:bg-redstone/25 dark:bg-redstone/20 dark:hover:bg-redstone/30'
+          }`}
         >
           {delta > 0 ? `+${delta}` : delta}
         </button>
