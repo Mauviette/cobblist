@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "generate:blocks": "node scripts/generate-blocks.mjs"
+    "generate:blocks": "node scripts/generate-blocks.mjs",
+    "generate:items": "node scripts/generate-items.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

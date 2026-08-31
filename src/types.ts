@@ -20,8 +20,9 @@ export interface Project {
   createdAt: string;
   updatedAt: string;
   items: ProjectItem[];
+  notes: string;
 }
 
 export type Lang = 'fr' | 'en';
 
-export type SortMode = 'alphabetical' | 'quantity' | 'category' | 'status';
+export type SortMode = 'alphabetical' | 'quantity' | 'category' | 'material' | 'status';

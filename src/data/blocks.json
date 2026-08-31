@@ -10978,5 +10978,55 @@
     "category": "blocs_fonctionnels",
     "stackSize": 64,
     "iconRef": "/blocks/icons/lab_table.png"
+  },
+  {
+    "id": "painting",
+    "names": {
+      "fr": "Tableau",
+      "en": "Painting"
+    },
+    "category": "objets_placables",
+    "stackSize": 64,
+    "iconRef": "/blocks/icons/painting.png"
+  },
+  {
+    "id": "armor_stand",
+    "names": {
+      "fr": "Porte-armure",
+      "en": "Armor Stand"
+    },
+    "category": "objets_placables",
+    "stackSize": 16,
+    "iconRef": "/blocks/icons/armor_stand.png"
+  },
+  {
+    "id": "end_crystal",
+    "names": {
+      "fr": "Cristal de l'End",
+      "en": "End Crystal"
+    },
+    "category": "objets_placables",
+    "stackSize": 64,
+    "iconRef": "/blocks/icons/end_crystal.png"
+  },
+  {
+    "id": "glow_berries",
+    "names": {
+      "fr": "Baies lumineuses",
+      "en": "Glow Berries"
+    },
+    "category": "objets_placables",
+    "stackSize": 64,
+    "iconRef": "/blocks/icons/glow_berries.png"
+  },
+  {
+    "id": "lead",
+    "names": {
+      "fr": "Laisse",
+      "en": "Lead"
+    },
+    "category": "objets_placables",
+    "stackSize": 64,
+    "iconRef": "/blocks/icons/lead.png"
   }
 ]

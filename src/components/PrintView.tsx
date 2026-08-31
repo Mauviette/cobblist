@@ -6,15 +6,17 @@ import { BlockIcon } from './BlockIcon';
 
 interface PrintViewProps {
   projectName: string;
+  notes?: string;
   items: { item: ProjectItem; block: BlockItem }[];
 }
 
-export function PrintView({ projectName, items }: PrintViewProps) {
+export function PrintView({ projectName, notes, items }: PrintViewProps) {
   const { t, lang } = useI18n();
 
   return (
     <div className="text-stone-900">
-      <h1 className="mb-4 text-2xl font-bold">{projectName}</h1>
+      <h1 className="mb-2 text-2xl font-bold">{projectName}</h1>
+      {notes && <p className="mb-4 whitespace-pre-wrap text-sm text-stone-700">{notes}</p>}
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="border-b-2 border-stone-800 text-left">

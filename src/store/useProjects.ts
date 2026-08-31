@@ -8,7 +8,9 @@ function loadProjects(): Project[] {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+    // Migration : les projets créés avant l'ajout des notes n'ont pas ce champ.
+    return parsed.map((p) => ({ notes: '', ...p }));
   } catch {
     return [];
   }
@@ -27,14 +29,14 @@ export function useProjects() {
 
   const createProject = useCallback((name: string): Project => {
     const now = new Date().toISOString();
-    const project: Project = { id: newId(), name, createdAt: now, updatedAt: now, items: [] };
+    const project: Project = { id: newId(), name, createdAt: now, updatedAt: now, items: [], notes: '' };
     setProjects((prev) => [...prev, project]);
     return project;
   }, []);
 
   const importProject = useCallback((project: Project): Project => {
     const now = new Date().toISOString();
-    const imported: Project = { ...project, id: newId(), createdAt: now, updatedAt: now };
+    const imported: Project = { ...project, id: newId(), createdAt: now, updatedAt: now, notes: project.notes ?? '' };
     setProjects((prev) => [...prev, imported]);
     return imported;
   }, []);
@@ -42,6 +44,12 @@ export function useProjects() {
   const renameProject = useCallback((id: string, name: string) => {
     setProjects((prev) =>
       prev.map((p) => (p.id === id ? { ...p, name, updatedAt: new Date().toISOString() } : p)),
+    );
+  }, []);
+
+  const updateProjectNotes = useCallback((id: string, notes: string) => {
+    setProjects((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, notes, updatedAt: new Date().toISOString() } : p)),
     );
   }, []);
 
@@ -80,5 +88,6 @@ export function useProjects() {
     duplicateProject,
     deleteProject,
     updateProjectItems,
+    updateProjectNotes,
   };
 }

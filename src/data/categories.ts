@@ -28,6 +28,10 @@ export const CATEGORIES: Record<string, CategoryInfo> = {
     labels: { fr: 'Blocs colorées', en: 'Colored Blocks' },
     accent: '#d3401f',
   },
+  objets_placables: {
+    labels: { fr: 'Objets plaçables', en: 'Placeable Objects' },
+    accent: '#6a4fb0',
+  },
 };
 
 export function categoryLabel(categoryId: string, lang: 'fr' | 'en'): string {

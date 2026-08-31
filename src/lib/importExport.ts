@@ -35,6 +35,7 @@ export function parseProjectJson(raw: string): Project {
     createdAt: typeof project.createdAt === 'string' ? project.createdAt : now,
     updatedAt: typeof project.updatedAt === 'string' ? project.updatedAt : now,
     items: project.items as ProjectItem[],
+    notes: typeof project.notes === 'string' ? project.notes : '',
   };
 }
 
